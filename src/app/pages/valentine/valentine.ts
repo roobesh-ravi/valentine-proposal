@@ -60,6 +60,11 @@ export class Valentine {
     const button = document.querySelector('.no-btn') as HTMLElement;
     const parent = document.querySelector('.btn-group') as HTMLElement;
 
+    const emojiIndex = this.hoverCount % this.sadEmojis.length;
+    const emoji = this.sadEmojis[emojiIndex];
+
+    button.innerText = emoji;
+
     const parentRect = parent.getBoundingClientRect();
     const btnRect = button.getBoundingClientRect();
 
@@ -74,11 +79,6 @@ export class Valentine {
 
     button.style.transition = `left ${speed}s cubic-bezier(.4, 0, .2, 1),
     top ${speed}s cubic-bezier(.4, 0, .2, 1)`;
-
-    const emojiIndex = this.hoverCount % this.sadEmojis.length;
-    const emoji = this.sadEmojis[emojiIndex];
-
-    button.innerText = emoji;
 
     const gifIndex = this.hoverCount % this.sadGifs.length;
     this.currentGif = this.sadGifs[gifIndex];
