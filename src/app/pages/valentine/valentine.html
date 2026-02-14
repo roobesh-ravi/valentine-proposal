@@ -1,0 +1,45 @@
+<div class="container">
+
+    <div class="hearts-bg">
+
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </div>
+
+    <div class="gif-section">
+        <img class="gif-display" [src]="currentGif" />
+    </div>
+
+    <div class="content-section">
+
+        <p class="description">
+            Nan alarm sound ku yelundha natkala vida<br />
+            Un good morning msg ku yelundha naal tha neraya<br />
+            Phone la songs keta natkla vida<br />
+            Nee paadi nan keta natkal dhan neraya<br />
+            Cheri cheri..Maavu araichadhu podhum, matter ku varuvom
+        </p>
+        <p class="valentine-text">Will you be my Valentine? 🌹</p>
+
+        <div class="btn-group">
+
+            <button class="yes-btn" (click)="celebrate()">
+                Yes 🤩
+            </button>
+
+            <button class="no-btn" (mouseenter)="moveNoButton()">
+                No 🥺
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

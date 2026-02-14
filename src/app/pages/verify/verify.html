@@ -1,0 +1,34 @@
+<div class="verify-container">
+
+  <div class="hearts-bg">
+
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+
+  </div>
+
+  <p class="font-class">Shuttumani Verification 🧸💕</p>
+  <p class="inter-text">Only my Shuttumani can proceed further, others..Velila jaav!</p>
+
+  <label class="inter-text-body" style="margin-top: 100px;">
+    When my shuttumani landed in planet Earth
+    <input type="date" [(ngModel)]="dob">
+  </label>
+
+  <label class="inter-text-body">
+    When my shuttumani accepted to be mine&nbsp;&nbsp;&nbsp;
+    <input type="date" [(ngModel)]="anniversary">
+  </label>
+
+  <button (click)="verify()">Verify</button>
+
+  <p class="error" *ngIf="error">
+    Does not match...Velila jaav!
+  </p>
+</div>
