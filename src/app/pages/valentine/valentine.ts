@@ -51,19 +51,13 @@ export class Valentine {
 
   }
 
-  moveNoButton() {
+  moveNoButton(event: MouseEvent) {
 
     this.hoverCount++;
     const buffer = 10;
 
-    const speed = Math.max(0.15, 0.45 - Math.pow(this.hoverCount, 1.3) * 0.01);
     const button = document.querySelector('.no-btn') as HTMLElement;
     const parent = document.querySelector('.btn-group') as HTMLElement;
-
-    const emojiIndex = this.hoverCount % this.sadEmojis.length;
-    const emoji = this.sadEmojis[emojiIndex];
-
-    button.innerText = emoji;
 
     const parentRect = parent.getBoundingClientRect();
     const btnRect = button.getBoundingClientRect();
@@ -71,17 +65,36 @@ export class Valentine {
     const maxX = parentRect.width - btnRect.width;
     const maxY = parentRect.height - btnRect.height;
 
-    const randomX = buffer + Math.random() * (maxX - buffer);
-    const randomY = buffer + Math.random() * (maxY - buffer);
+    const mouseX = event.clientX - parentRect.left;
+    const mouseY = event.clientY - parentRect.top;
+
+    const minDistance = 140; // how far button must escape
+
+    let randomX, randomY, distance;
+
+    do {
+      randomX = buffer + Math.random() * (maxX - buffer);
+      randomY = buffer + Math.random() * (maxY - buffer);
+
+      const dx = randomX - mouseX;
+      const dy = randomY - mouseY;
+
+      distance = Math.sqrt(dx * dx + dy * dy);
+
+    } while (distance < minDistance);
+
+    const emojiIndex = this.hoverCount % this.sadEmojis.length;
+    button.innerText = this.sadEmojis[emojiIndex];
+
+    const gifIndex = this.hoverCount % this.sadGifs.length;
+    this.currentGif = this.sadGifs[gifIndex];
+
+    const speed = Math.max(0.15, 0.35 - this.hoverCount * 0.04);
 
     button.style.left = `${randomX}px`;
     button.style.top = `${randomY}px`;
 
-    button.style.transition = `left ${speed}s cubic-bezier(.4, 0, .2, 1),
-    top ${speed}s cubic-bezier(.4, 0, .2, 1)`;
-
-    const gifIndex = this.hoverCount % this.sadGifs.length;
-    this.currentGif = this.sadGifs[gifIndex];
+    button.style.transition = `left ${speed}s cubic-bezier(.4, 0, .2, 1), top ${speed}s cubic-bezier(.4, 0, .2, 1)`;
 
   }
 
